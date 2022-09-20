@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Shell.PresentationMode="ModalAnimated"
+             xmlns:behavior="clr-namespace:VPassManager"
+             BackgroundColor="Silver"
+             x:Class="VPassSample.Views.RegistrationModal">
+    <ContentPage.Content>
+        <StackLayout Spacing="12" Margin="30,10" VerticalOptions="Center">
+
+            <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
+                <Image Source="newuser.png" VerticalOptions="Center" HeightRequest="90"/>
+            </ContentView>
+
+            <Label x:Name="lbUser" Text="Usuário" TextColor="White"/>
+            <Entry x:Name="txUser" Placeholder="Insira o usuário.."/>
+
+            <Label x:Name="lbEmail" Text="E-mail" TextColor="White"/>
+            <Entry x:Name="txEmail" Placeholder="Insira o  e-mail.." >
+                <Entry.Behaviors>
+                    <behavior:EmailBehavior />
+                </Entry.Behaviors>
+            </Entry>
+
+            <Label x:Name="lbPass" Text="Senha" TextColor="White"/>
+            <Entry x:Name="txPass" Placeholder="Insira a senha.." IsPassword="True"/>
+
+            <Label x:Name="lbPass2" Text="Confirmar senha" TextColor="White"/>
+            <Entry x:Name="txPass2" Placeholder="Insira a confirmação da senha.." IsPassword="True"/>
+
+            <Button Text="Registrar"
+                    BackgroundColor="#3092FF"
+                    Clicked="Button_Clicked"
+                    TextColor="White"/>
+
+            <!-- 2. Register -->
+            <Label Text="Voltar"
+                   x:Name="VoltarBtn"
+                   TextColor="#333333"
+                   Margin="20"
+                   HorizontalTextAlignment="Center"
+                   TextDecorations="Underline">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="TapGestureRecognizer_Tapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

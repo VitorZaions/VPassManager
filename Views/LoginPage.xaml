@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Login"
+    BackgroundColor="Silver"
+     xmlns:local="clr-namespace:VPassSample"
+    Shell.NavBarIsVisible="False"
+    x:Class="VPassSample.Views.LoginPage">
+    <ContentPage.Content>
+        
+        <StackLayout Margin="30,10" VerticalOptions="Center" Spacing="12">
+
+            <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
+                <Image Source="padlock.png" VerticalOptions="Center" HeightRequest="90"/>
+            </ContentView>
+
+            <Label x:Name="lbUser" Text="Usuário" TextColor="White"/>
+            <Entry x:Name="txUser" Placeholder="Insira o usuário.."/>
+
+            <Label x:Name="lbPass" Text="Senha" TextColor="White"/>
+            <Entry x:Name="txPass" Placeholder="Insira a senha.." IsPassword="True"/>
+
+            <Button Text="Login" Clicked="Button_Clicked" TextColor="White" BackgroundColor="#3092FF"/>
+            
+            <Label Text="Registrar-se" x:Name="RegistrationBtn" TextColor="White" 
+                   Margin="20"
+                   HorizontalTextAlignment="Center"
+                   TextDecorations="Underline">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label Text="Esqueceu sua senha? clique aqui!" x:Name="EsqueceuSenhaBtn" TextColor="White" 
+                   Margin="20"
+                   HorizontalTextAlignment="Center"
+                   TextDecorations="Underline">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

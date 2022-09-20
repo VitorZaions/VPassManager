@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="VPassSample.Views.ItemsPage"
+             Title="VPass Manager"
+             x:Name="BrowseItemsPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="AddItem_Clicked"/>
+        <!--<ToolbarItem Text="Go To Hidden" Command="{Binding GoToHiddenCommand}" />-->
+    </ContentPage.ToolbarItems>
+
+
+    <StackLayout>
+        <StackLayout Orientation="Vertical" BackgroundColor="#2469B4">
+            <Label HorizontalTextAlignment="Start" Text="Categorias" Padding="17,5,5,5" FontSize="Medium" TextColor="White"/>
+        </StackLayout>
+        <ListView x:Name="ListaCategorias" HasUnevenRows="True" ItemTapped="ListaCategorias_ItemTapped" SelectedItem="OnItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                
+                                <Label x:Name="lbCo" 
+                                    Text="{Binding Descricao}"
+                                    FontSize="Medium"
+                                    Style="{DynamicResource LargeLabel}" HorizontalTextAlignment="Start" Grid.Row="0" Grid.Column="0"/>
+
+                                <Image Source="editar.png" HeightRequest="30" HorizontalOptions="End" Grid.Row="0" Grid.Column="1" Margin="0,0,50,0" AutomationId="{Binding IDCategoria}">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                        Tapped="OnEditarTap"
+                                        NumberOfTapsRequired="1" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+
+                                <Image Source="apagar.png" HeightRequest="30" HorizontalOptions="End" Grid.Row="0" Grid.Column="1" AutomationId="{Binding IDCategoria}">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                        Tapped="OnExcluirTap"
+                                        NumberOfTapsRequired="1" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                
+                            </Grid>
+
+
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>

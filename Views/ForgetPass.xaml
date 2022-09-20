@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VPassSample.Views.ForgetPass">
+    <ContentPage.Content>
+        <StackLayout Margin="30,10" VerticalOptions="Center" Spacing="12">
+
+            <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
+                <Image Source="esqueceusenha.png" VerticalOptions="Center" HeightRequest="90"/>
+            </ContentView>
+
+            <Label x:Name="lbUser" Text="Usuário" TextColor="White"/>
+            <Entry x:Name="txUser" Placeholder="Insira o usuário.."/>
+
+            <Label x:Name="lbToken" Text="Token" TextColor="White"/>
+            <Entry x:Name="txToken" Placeholder="Insira seu token de recuperação.."/>
+
+            <Label x:Name="lbPass" Text="Nova senha" TextColor="White"/>
+            <Entry x:Name="txPass" Placeholder="Insira a nova senha.." IsPassword="True"/>
+
+            <Label x:Name="lbPass2" Text="Confirmação Nova senha" TextColor="White"/>
+            <Entry x:Name="txPass2" Placeholder="Insira a confirmação da nova senha.." IsPassword="True"/>
+
+            <Button Text="Alterar Senha" Clicked="Button_Clicked" TextColor="White" BackgroundColor="#3092FF"/>            
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

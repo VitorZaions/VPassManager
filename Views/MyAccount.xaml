@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:behavior="clr-namespace:VPassManager"
+             mc:Ignorable="d"
+             x:Class="VPassSample.Views.MyAccount"
+             Title="Minha Conta">
+
+    <ContentPage.Resources>
+    </ContentPage.Resources>
+
+     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Logout" Clicked="ToolbarItem_Clicked" Command="{Binding LogoutCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Margin="30,10">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="lbUser" Text="" HorizontalOptions="End" TextColor="White" Grid.Row="0" Grid.Column="0" FontSize="Medium" Margin="0,17,10,10"/>
+                <Image Source="exportarsenhas.png" HeightRequest="30" HorizontalOptions="Start" Grid.Row="0" Grid.Column="1">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                                        Tapped="OnExportTap"
+                                        NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>       
+            
+            <Image Source="minhaconta.png" HorizontalOptions="Center" HeightRequest="120" Margin="0,0,0,17"/>
+            
+            <Label x:Name="lbEmail" Text="E-mail" TextColor="White"/>
+            <Entry x:Name="txEmail" Placeholder="Insira o novo e-mail.." >
+                <Entry.Behaviors>
+                    <behavior:EmailBehavior />
+                </Entry.Behaviors>
+            </Entry>
+
+            <Button Text="Alterar E-mail"
+                    BackgroundColor="#0286F2"
+                    TextColor="White"
+                    Clicked="Button_Clicked_1"
+                    Margin="0,0,0,17"/>
+
+            <Label x:Name="lbPassOld" Text="Senha antiga" TextColor="White"/>
+            <Entry x:Name="txPassOld" Placeholder="Insira a senha antiga.." IsPassword="True"/>
+
+            <Label x:Name="lbPassNew" Text="Senha nova" TextColor="White"/>
+            <Entry x:Name="txPassNew" Placeholder="Insira a nova senha.." IsPassword="True"/>
+
+            <Label x:Name="lbPassNew2" Text="Confirmar nova senha" TextColor="White"/>
+            <Entry x:Name="txPassNew2" Placeholder="Insira a confirmação da nova senha.." IsPassword="True"/>
+
+            <Button Text="Alterar Senha"
+                    BackgroundColor="#3092FF"
+                    Clicked="Button_Clicked"
+                    TextColor="White"
+                    Margin="0,17,0,0"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>
