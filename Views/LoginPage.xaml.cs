@@ -9,11 +9,9 @@ namespace VPassSample.Views
 {
     public partial class LoginPage : ContentPage
     {
-        public CContexto contexto;
         public LoginPage()
         {
             InitializeComponent();
-            contexto = new CContexto();
         }
 
         public async void AbrirMain()
@@ -39,7 +37,7 @@ namespace VPassSample.Views
                     return;
                 }
 
-                CUsuario MyUser = contexto.conexao.Query<CUsuario>($"select * from CUsuario where Usuario = '{txUser.Text}'").SingleOrDefault();
+                CUsuario MyUser = CContexto.conexao.Query<CUsuario>($"select * from CUsuario where Usuario = '{txUser.Text}'").SingleOrDefault();
 
                 if(MyUser == null)
                 {

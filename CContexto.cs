@@ -21,11 +21,11 @@ using System.Runtime.InteropServices;
 
 namespace VPassSample
 {
-    public class CContexto
+    public static class CContexto
     {
-        public SQLiteConnection conexao;
-        IFolder pasta;
-        public CContexto()
+        public static SQLiteConnection conexao;
+        static IFolder pasta;
+        static CContexto()
         {
             pasta = new LocalRootFolder();
             var arquivo = pasta.CreateFile("InfoDB", PCLExt.FileStorage.CreationCollisionOption.OpenIfExists);
@@ -36,17 +36,17 @@ namespace VPassSample
             conexao.CreateTable<Models.CSenha>();
         }
 
-        public void Inserir<T>(T modelo)
+        public static void Inserir<T>(T modelo)
         {
             conexao.Insert(modelo);
         }
 
-        public void Atualizar<T>(T modelo)
+        public static void Atualizar<T>(T modelo)
         {
             conexao.Update(modelo);
         }
 
-        public void Deletar<T>(T modelo)
+        public static void Deletar<T>(T modelo)
         {
             conexao.Delete(modelo);
         }

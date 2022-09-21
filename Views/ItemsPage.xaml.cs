@@ -20,12 +20,9 @@ namespace VPassSample.Views
     [DesignTimeVisible(false)]
     public partial class ItemsPage : ContentPage
     {
-        public CContexto contexto;
-
         public ItemsPage()
         {
             InitializeComponent();
-            contexto = new CContexto();
             AtualizaLista();
         }
 
@@ -36,7 +33,7 @@ namespace VPassSample.Views
 
         private void AtualizaLista()
         {
-            List<CCategoria> Cats = contexto.conexao.Query<CCategoria>($"SELECT * FROM CCategoria where IDUsuario = {utils.User.IDUsuario}").ToList();
+            List<CCategoria> Cats = CContexto.conexao.Query<CCategoria>($"SELECT * FROM CCategoria where IDUsuario = {utils.User.IDUsuario}").ToList();
             ListaCategorias.ItemsSource = Cats;
         }                
 
@@ -61,7 +58,7 @@ namespace VPassSample.Views
             try
             {   
                 int id = Convert.ToInt32(((Image)sender).AutomationId);
-                CCategoria MyCat = contexto.conexao.Query<CCategoria>($"select * from CCategoria where IDCategoria = '{id}'").SingleOrDefault();
+                CCategoria MyCat = CContexto.conexao.Query<CCategoria>($"select * from CCategoria where IDCategoria = '{id}'").SingleOrDefault();
                 var modalPage = new NewItemPage(MyCat);
                 modalPage.Disappearing += (sender2, e2) =>
                 {
@@ -84,16 +81,16 @@ namespace VPassSample.Views
                     if (t.Result)
                     {
                         int id = Convert.ToInt32(((Image)sender).AutomationId);
-                        List<CSenha> Passwords = contexto.conexao.Query<CSenha>($"SELECT * FROM CSenha where IDCategoria = {id}").ToList();
+                        List<CSenha> Passwords = CContexto.conexao.Query<CSenha>($"SELECT * FROM CSenha where IDCategoria = {id}").ToList();
 
                         if(Passwords.Count > 0)
                         {                            
                             DisplayAlert("Erro", "Existem senhas nesta categoria, não foi possível excluir.", "OK");
                             return;
                         }
-                        
+
                         // Tudo Certo Exclui
-                        contexto.conexao.Execute($"delete from CCategoria where IDCategoria = {id}");
+                        CContexto.conexao.Execute($"delete from CCategoria where IDCategoria = {id}");
                         AtualizaLista();
                         DisplayAlert("Categorias", "Categoria removida com sucesso!", "OK");
                     }

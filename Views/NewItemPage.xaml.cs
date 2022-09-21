@@ -14,14 +14,12 @@ namespace VPassSample.Views
     [DesignTimeVisible(false)]
     public partial class NewItemPage : ContentPage
     {
-        public CContexto contexto;
         private CCategoria Cat;
 
         public Item Item { get; set; }
 
         public NewItemPage(CCategoria Categoria)
         {
-            contexto = new CContexto();
             InitializeComponent();
             Cat = Categoria;
 
@@ -55,12 +53,12 @@ namespace VPassSample.Views
 
             if (Cat.IDCategoria != 0)
             {
-                
-                contexto.conexao.Update(Cat);
+
+                CContexto.conexao.Update(Cat);
             }
             else
             {
-                contexto.conexao.Insert(Cat);
+                CContexto.conexao.Insert(Cat);
             }
 
             FecharForm();

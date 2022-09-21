@@ -7,13 +7,10 @@ namespace VPassSample
 {
     public partial class App : Application
     {
-        //public CContexto contexto;
         public App()
         {
-
             InitializeComponent();
             MainPage = new AppShell();
-            //CContexto = new CContexto();
         }
 
         protected override void OnStart()

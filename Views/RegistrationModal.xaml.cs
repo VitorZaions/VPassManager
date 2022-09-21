@@ -14,11 +14,9 @@ namespace VPassSample.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RegistrationModal : ContentPage
     {
-        public CContexto contexto;
         public RegistrationModal()
         {
             InitializeComponent();
-            contexto = new CContexto();
         }
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -36,7 +34,7 @@ namespace VPassSample.Views
                     return;
                 }
 
-                CUsuario MyUser = contexto.conexao.Query<CUsuario>($"select * from CUsuario where Usuario = '{txUser.Text}'").SingleOrDefault();
+                CUsuario MyUser = CContexto.conexao.Query<CUsuario>($"select * from CUsuario where Usuario = '{txUser.Text}'").SingleOrDefault();
 
                 if(MyUser != null)
                 {
@@ -82,7 +80,7 @@ namespace VPassSample.Views
                 Random TheRandom = new Random();
                 User.Token = TheRandom.Next(10000, 99999);
 
-                contexto.Inserir(User);
+                CContexto.Inserir(User);
 
                 DisplayAlert("Inserir", "Usuário registrado com sucesso!", "OK");
                 DisplayAlert("Inserir", $"Guarde seu token de recuperação: {User.Token}", "OK");

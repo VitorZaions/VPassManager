@@ -16,12 +16,9 @@ namespace VPassSample.Views
     [DesignTimeVisible(false)]
     public partial class MyAccount : ContentPage
     {
-        public CContexto contexto;
-
         public MyAccount()
         {
             InitializeComponent();
-            contexto = new CContexto();
             lbUser.Text = utils.User.Usuario;
         }
 
@@ -71,7 +68,7 @@ namespace VPassSample.Views
             try
             {
                 utils.User.Senha = txPassNew.Text;
-                contexto.conexao.Update(utils.User);
+                CContexto.conexao.Update(utils.User);
                 DisplayAlert("Inserir", $"Guarde seu token de recuperação: {utils.User.Token}", "OK");
                 DisplayAlert("Alterar Senha", "Senha atualizada com sucesso!", "OK");
             }
@@ -102,7 +99,7 @@ namespace VPassSample.Views
             try
             {
                 utils.User.Email = txEmail.Text;
-                contexto.conexao.Update(utils.User);
+                CContexto.conexao.Update(utils.User);
                 DisplayAlert("Alterar Senha", "E-mail atualizado com sucesso!", "OK");
             }
             catch
@@ -136,12 +133,12 @@ namespace VPassSample.Views
                         try
                         {
                             string SenhasFinal = "";
-                            List<CCategoria> Cats = contexto.conexao.Query<CCategoria>($"SELECT * FROM CCategoria where IDUsuario = {utils.User.IDUsuario}").ToList();
+                            List<CCategoria> Cats = CContexto.conexao.Query<CCategoria>($"SELECT * FROM CCategoria where IDUsuario = {utils.User.IDUsuario}").ToList();
                             List<CSenha> Senhas = new List<CSenha>();
 
                             foreach (CCategoria Cat in Cats)
                             {
-                                List<CSenha> SenhasCat = contexto.conexao.Query<CSenha>($"SELECT * FROM CSenha where IDCategoria = {Cat.IDCategoria}").ToList();
+                                List<CSenha> SenhasCat = CContexto.conexao.Query<CSenha>($"SELECT * FROM CSenha where IDCategoria = {Cat.IDCategoria}").ToList();
 
                                 foreach (CSenha Senha in SenhasCat)
                                 {

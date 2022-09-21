@@ -13,12 +13,9 @@ namespace VPassSample.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ForgetPass : ContentPage
     {
-        public CContexto contexto;
-
         public ForgetPass()
         {
             InitializeComponent();
-            contexto = new CContexto();
         }
 
         private void Button_Clicked(object sender, EventArgs e)
@@ -57,7 +54,7 @@ namespace VPassSample.Views
 
             try
             {            
-                CUsuario MyUser = contexto.conexao.Query<CUsuario>($"select * from CUsuario where Usuario = '{txUser.Text}' and Token = '{txToken.Text}'").SingleOrDefault();
+                CUsuario MyUser = CContexto.conexao.Query<CUsuario>($"select * from CUsuario where Usuario = '{txUser.Text}' and Token = '{txToken.Text}'").SingleOrDefault();
                 if(MyUser == null)
                 {
                     DisplayAlert("Erro", "Combinação de Token e E-mail inválidos.", "OK");
@@ -65,7 +62,7 @@ namespace VPassSample.Views
                 }
 
                 MyUser.Senha = txPass.Text;
-                contexto.conexao.Update(MyUser);
+                CContexto.conexao.Update(MyUser);
                 DisplayAlert("Alterar Senha", "Senha atualizada com sucesso!", "OK");
             }
             catch

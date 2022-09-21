@@ -15,11 +15,9 @@ namespace VPassManager.Views
     public partial class PasswordsList : ContentPage
     {
         private CCategoria _Categoria;
-        public CContexto contexto;
         public PasswordsList(CCategoria Categoria)
         {
             InitializeComponent();
-            contexto = new CContexto();
             _Categoria = Categoria;
 
             LBL_SubDesc.Text = _Categoria.Descricao;
@@ -33,7 +31,7 @@ namespace VPassManager.Views
 
         private void AtualizaLista()
         {
-            List<CSenha> Cats = contexto.conexao.Query<CSenha>($"SELECT * FROM CSenha where IDCategoria = {_Categoria.IDCategoria}").ToList();
+            List<CSenha> Cats = CContexto.conexao.Query<CSenha>($"SELECT * FROM CSenha where IDCategoria = {_Categoria.IDCategoria}").ToList();
             ListaSenhas.ItemsSource = Cats;
         }               
 
@@ -46,7 +44,7 @@ namespace VPassManager.Views
                     if (t.Result)
                     {
                         int id = Convert.ToInt32(((Image)sender).AutomationId);
-                        contexto.conexao.Execute($"delete from CSenha where IDSenha = {id}");
+                        CContexto.conexao.Execute($"delete from CSenha where IDSenha = {id}");
                         AtualizaLista();
                         DisplayAlert("Categorias", "Senha removida com sucesso!", "OK");
                     }
